@@ -13,8 +13,8 @@ angular.module('userProfiles', ['ui.router'])
 		'templateUrl': './views/profile.html',
 		controller: 'profileCtrl',
 		resolve: {
-			userInfo: function( friendService ) {
-				/* FIX ME */
+			userInfo: function(friendService) {
+				return friendService.getFriends();
 			}
 		}
 	});
