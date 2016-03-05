@@ -32,6 +32,20 @@ module.exports = {
       });
     });
     res.status(200).json({currentUser: req.session.currentUser, friends: friendArr});
+  },
+
+  allFriends: function(req, res, next) {
+    var list = [];
+    profiles.forEach(function(obj){
+      var match = false;
+        req.session.currentUser.friends.forEach(function(a){
+            if (obj.name == req.session.currentUser.name || obj.name == a) {
+              match = true;
+            }
+        });
+        if (!match) list.push(obj);
+      });
+    res.status(200).json(list);
   }
 
 };

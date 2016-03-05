@@ -17,6 +17,22 @@ angular.module('userProfiles', ['ui.router'])
 				return friendService.getFriends();
 			}
 		}
+	})
+	.state('friends', {
+		url: '/friends',
+		'templateUrl': './views/profile.html',
+		controller: function($scope, friendList, friendService){
+				$scope.friends = friendList;
+						$scope.flip = function(a){
+							a.hide = true;
+							friendService.addFriend(a);
+							};
+		},
+		resolve: {
+			friendList: function(friendService) {
+				return friendService.getAllFriends();
+			}
+		}
 	});
 
 	$urlRouterProvider.otherwise('/');

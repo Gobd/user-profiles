@@ -33,6 +33,17 @@ module.exports = {
       }
     });
     if (!found) {res.json({userFound: false});}
+  },
+
+  addFriend: function(req, res, next) {
+    var name = req.body.name;
+    users.forEach(function(obj){
+      if (obj.name === req.session.currentUser.name) {
+        obj.friends.push(name);
+        req.session.currentUser.friends.push(name);
+      }
+    });
+    res.status(200).send();
   }
 
 };

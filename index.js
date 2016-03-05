@@ -23,6 +23,8 @@ app.use(express.static(__dirname + '/public'));
 
 app.post('/api/login', user.login);
 app.get('/api/login', profile.profileFind);
+app.get('/api/friendlist', profile.allFriends);
+app.post('/addfriend', user.addFriend);
 
 app.listen(port, function(){
   console.log('Listening on port ' + port);
